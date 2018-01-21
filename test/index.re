@@ -25,8 +25,9 @@ Select.(
 Insert.(
     make()
         |> into("tbl")
-        |> set("a", "ay")
-        |> set("b", 99)
+        |> setString("a", "ay")
+        |> setInt("b", 99)
+        |> setBool("bool", true)
         |> toString
         |> Js.log
 );
@@ -34,8 +35,22 @@ Insert.(
 Update.(
     make()
         |> table("tbl")
-        |> set("v", 39)
+        |> setInt("v", 39)
         |> where("a = 9")
+        |> setJson("j", Js.Json.number(11.0))
+        |> setJson("j2", Js.Json.string("yo"))
+        |> setJson("j3", Js.Json.boolean(Js.false_))
+        |> setJson("j4", Js.Json.null)
+        |> setJson("j5",
+            [|1.0, 2.0, 3.0|]
+                |> Js.Array.map(Js.Json.number)
+                |> Js.Json.array
+        )
+        |> setJson("j6",
+            [|("dog", Js.Json.string("good"))|]
+                |> Js.Dict.fromArray
+                |> Js.Json.object_
+        )
         |> toString
         |> Js.log
 );
