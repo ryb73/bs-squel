@@ -1,5 +1,5 @@
-open Squel;
-open Squel.Params.Infix;
+open! BsSquel;
+open BsSquel.Params.Infix;
 
 Select.(
     make()

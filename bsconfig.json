@@ -1,5 +1,6 @@
 {
     "name" : "bs-squel",
+    "namespace": true,
     "sources" : [
         {
             "dir" : "src",
