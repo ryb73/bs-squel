@@ -1,9 +1,9 @@
 type t;
-external make : unit => t = "delete" [@@bs.module "squel"];
+[@bs.module "squel"] external make : unit => t = "delete";
 
-external from : string => t = "" [@@bs.send.pipe: t];
+[@bs.send.pipe : t] external from : string => t = "";
 
-external where : string => t = "" [@@bs.send.pipe: t];
-external whereEx : Expression.t => t = "where" [@@bs.send.pipe: t];
+[@bs.send.pipe : t] external where : string => t = "";
+[@bs.send.pipe : t] external whereEx : Expression.t => t = "where";
 
-external toString : t => string = "" [@@bs.send];
+[@bs.send] external toString : t => string = "";

@@ -1,7 +1,7 @@
 type t;
-external make : unit => t = "insert" [@@bs.module "squel"];
+[@bs.module "squel"] external make : unit => t = "insert";
 
-external into : string => t = "" [@@bs.send.pipe: t];
-external set : string => 'a => t = "" [@@bs.send.pipe: t];
+[@bs.send.pipe : t] external into : string => t = "";
+[@bs.send.pipe : t] external set : (string, 'a) => t = "";
 
-external toString : t => string = "" [@@bs.send];
+[@bs.send] external toString : t => string = "";

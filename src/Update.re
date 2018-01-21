@@ -1,10 +1,10 @@
 type t;
-external make : unit => t = "update" [@@bs.module "squel"];
+[@bs.module "squel"] external make : unit => t = "update";
 
-external table : string => t = "" [@@bs.send.pipe: t];
-external set : string => 'a => t = "" [@@bs.send.pipe: t];
+[@bs.send.pipe : t] external table : string => t = "";
+[@bs.send.pipe : t] external set : (string, 'a) => t = "";
 
-external where : string => t = "" [@@bs.send.pipe: t];
-external whereEx : Expression.t => t = "where" [@@bs.send.pipe: t];
+[@bs.send.pipe : t] external where : string => t = "";
+[@bs.send.pipe : t] external whereEx : Expression.t => t = "where";
 
-external toString : t => string = "" [@@bs.send];
+[@bs.send] external toString : t => string = "";
