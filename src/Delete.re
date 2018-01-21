@@ -1,5 +1,5 @@
 type t;
-external make : unit => t = "update" [@@bs.module "squel"];
+external make : unit => t = "delete" [@@bs.module "squel"];
 
 external from : string => t = "" [@@bs.send.pipe: t];
 

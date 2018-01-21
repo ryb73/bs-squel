@@ -3,12 +3,12 @@ open Squel.Params.Infix;
 
 Select.(
     make ()
-        |> from "tbl"
-        |> field "ok"
+        |> from alias::"aloha" "tbl"
+        |> join alias::"tobias" "tbl2" "tbl.a = tobias.a"
+        |> field "tobias.ok"
         |> field "count(*)"
-        |> group "ok"
-        |> group "ok"
-        |> order "ok" `Desc
+        |> group "tobias.ok"
+        |> order "tobias.ok" `Desc
         |> whereEx (
             Expression.make ()
                 |> Expression.and_ "ok = 4"
