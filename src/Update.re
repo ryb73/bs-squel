@@ -1,7 +1,7 @@
 type t;
 
 [@bs.module "squel"] external _make : Js.t(_) => t = "update";
-let make () = _make { "replaceSingleQuotes": Js.true_ };
+let make () = _make { "replaceSingleQuotes": true };
 
 [@bs.send.pipe: t] external table : string => t = "";
 
