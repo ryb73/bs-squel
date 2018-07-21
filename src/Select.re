@@ -1,19 +1,20 @@
 type t;
-[@bs.module "squel"] external make : unit => t = "select";
 
-[@bs.send.pipe : t] external _from : (string, ~alias: string=?, unit) => t = "from";
+[@bs.module "squel"] external _make : Js.t(_) => t = "select";
+let make () = _make { "replaceSingleQuotes": Js.true_ };
+
+[@bs.send.pipe: t] external _from : (string, ~alias: string=?, unit) => t = "from";
 let from = (~alias=?, table) => _from(table, ~alias?, ());
 
-[@bs.send.pipe : t] external field : string => t = "";
-[@bs.send.pipe : t] external group : string => t = "";
+[@bs.send.pipe: t] external field : string => t = "";
+[@bs.send.pipe: t] external group : string => t = "";
 
-[@bs.send.pipe : t] external where : string => t = "";
-[@bs.send.pipe : t] external whereEx : Expression.t => t = "where";
+include Whereable.Make({ type nonrec t = t });
 
-[@bs.send.pipe : t] external join : (string, ~alias: string=?, string) => t = "";
-[@bs.send.pipe : t] external joinEx : (string, ~alias: string=?, Expression.t) => t = "";
+[@bs.send.pipe: t] external join : (string, ~alias: string=?, string) => t = "";
+[@bs.send.pipe: t] external joinEx : (string, ~alias: string=?, Expression.t) => t = "";
 
-[@bs.send.pipe : t] external _order : (string, Js.boolean) => t = "order";
+[@bs.send.pipe: t] external _order : (string, Js.boolean) => t = "order";
 let order = (field, order, select) =>
     switch order {
         | `Asc => _order(field, Js.true_, select)
@@ -21,3 +22,4 @@ let order = (field, order, select) =>
   };
 
 [@bs.send] external toString : t => string = "";
+[@bs.send] external toParam : t => string = "";

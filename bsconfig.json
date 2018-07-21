@@ -4,7 +4,14 @@
     "sources" : [
         {
             "dir" : "src",
-            "public": [ "Squel" ]
+            "public": [
+                "Delete",
+                "Expression",
+                "Insert",
+                "Params",
+                "Select",
+                "Update"
+            ]
         },
         {
             "dir": "test",
